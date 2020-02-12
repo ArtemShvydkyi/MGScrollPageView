@@ -304,7 +304,7 @@ static CGFloat const contentSizeXOff = 20.0;
             self.scrollLine.zj_width = width;
         }
         else {
-            self.scrollLine.zj_x = lineX + width/2 - self.segmentStyle.lineWidth/2 ;
+            self.scrollLine.zj_x = lineX + width/2 - self.segmentStyle.lineWidth/2;
             self.scrollLine.zj_width = self.segmentStyle.lineWidth;
         }
     }
@@ -379,7 +379,10 @@ static CGFloat const contentSizeXOff = 20.0;
                 weakSelf.scrollLine.zj_width = width;
             }
             else {
-                weakSelf.scrollLine.zj_x = lineX + width/2 - weakSelf.segmentStyle.lineWidth/2 ;
+                
+                CGFloat x = MAX((weakSelf.scrollLine.zj_x = lineX + width/2 - weakSelf.segmentStyle.lineWidth/2), self.segmentStyle.titleMargin);
+                
+                weakSelf.scrollLine.zj_x = x ;
                 weakSelf.scrollLine.zj_width = weakSelf.segmentStyle.lineWidth;
             }
         }
@@ -459,7 +462,9 @@ static CGFloat const contentSizeXOff = 20.0;
             self.scrollLine.zj_width = width;
         }
         else {
-            self.scrollLine.zj_x = lineX + width/2 - self.segmentStyle.lineWidth/2 ;
+            
+            CGFloat x = MAX((lineX + width/2 - self.segmentStyle.lineWidth/2), self.segmentStyle.titleMargin);
+            self.scrollLine.zj_x = x;
             self.scrollLine.zj_width = self.segmentStyle.lineWidth;
         }
     }
