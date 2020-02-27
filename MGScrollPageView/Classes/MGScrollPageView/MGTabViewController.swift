@@ -15,7 +15,7 @@ fileprivate let KScreenHeight = UIScreen.main.bounds.height
 fileprivate let NavBarHeight:CGFloat = (UIScreen.main.bounds.height == 812) ? 88:64
 
 // MARK:外部使用方法
-extension MGTabViewController{
+extension MGTabViewController {
      public func reloadView(){
         tableView.delegate = self
         tableView.dataSource = self
@@ -66,12 +66,18 @@ extension MGTabViewController{
         
     }
     
-    @objc open func setUpTabTitleView(titleView: ZJTitleView!, forIndex index: Int){
+    open func setUpTabTitleView(titleView: ZJTitleView!, forIndex index: Int) {
+        
         
     }
 }
 
 open class MGTabViewController: UIViewController {
+    
+    public var navigationHeight: CGFloat = 44
+    
+    public var tabBarHeight: CGFloat = 0
+    
     // MARK:外部使用方法
     /*! Tab的头 不设置就是没有头啦 */
     public var headView:UIView?
@@ -105,6 +111,8 @@ open class MGTabViewController: UIViewController {
             }
         }
     }
+    
+    
     
     public var isSubRefresh = false
     
@@ -154,7 +162,8 @@ open class MGTabViewController: UIViewController {
     public lazy var contentViewFrame: CGRect! = {[unowned self] in
         // 注意, 如果tableview是在storyboard中来的, 设置contentView的高度和这里不一样
         let hotHeight = self.keepTab ? self.style.segmentHeight: 0
-        var frame = CGRect(x: 0, y: 0, width: KScreenWidth, height: KScreenHeight - hotHeight - NavBarHeight)
+        
+        var frame = CGRect(x: 0, y: 0, width: KScreenWidth, height: KScreenHeight - hotHeight - self.navigationHeight - self.tabBarHeight)
         return frame
         }()
     
@@ -265,13 +274,23 @@ open class MGTabViewController: UIViewController {
             }
         }
     }
+    
+    open func _setUpTabTitleView(titleView: ZJTitleView!, forIndex index: Int) {
+
+    }
 }
 
 extension MGTabViewController: ZJScrollPageViewDelegate
 {
     
     public func setUp(_ titleView: ZJTitleView!, for index: Int) {
-        
+        setUpTabTitleView(titleView: titleView, forIndex: index)
+        _setUpTabTitleView(titleView: titleView, forIndex: index)
+    }
+    
+    open func setUpTitleView(titleView: ZJTitleView!, forIndex index: Int) {
+        setUpTabTitleView(titleView: titleView, forIndex: index)
+        _setUpTabTitleView(titleView: titleView, forIndex: index)
     }
     
     public func frameOfChildController(forContainer containerView: UIView!) -> CGRect {
@@ -318,10 +337,6 @@ extension MGTabViewController: ZJScrollPageViewDelegate
     
     public func scrollPageController(_ scrollPageController: UIViewController!, childViewControllDidDisappear childViewController: UIViewController!, for index: Int) {
         scrollTabController(scrollPageController:scrollPageController, childViewControllDidDisappear: childViewController, forIndex: index)
-    }
-    
-    func setUpTitleView(titleView: ZJTitleView!, forIndex index: Int) {
-        setUpTabTitleView(titleView: titleView, forIndex: index)
     }
 }
 

@@ -147,6 +147,10 @@
             break;
     }
     
+    if (self.customTitleViewWidth > 1) {
+        return self.customTitleViewWidth;
+    } 
+    
     return width;
 }
 

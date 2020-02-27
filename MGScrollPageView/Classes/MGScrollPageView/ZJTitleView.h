@@ -21,6 +21,8 @@
 @property (strong, nonatomic) UIImage *normalImage;
 @property (strong, nonatomic) UIImage *selectedImage;
 
+@property (assign, nonatomic) CGFloat customTitleViewWidth;
+
 - (CGFloat)titleViewWidth;
 - (void)adjustSubviewFrame;
 @end

@@ -90,7 +90,6 @@ static CGFloat const contentSizeXOff = 20.0;
     
     if (self.segmentStyle.isShowLineBgView) {
         [self addSubview:self.scrollLineBgView];
-        [self sendSubviewToBack:self.scrollLineBgView];
     }
     
     if (self.segmentStyle.isShowLine) {
@@ -105,6 +104,7 @@ static CGFloat const contentSizeXOff = 20.0;
     if (self.segmentStyle.isShowExtraButton) {
         [self addSubview:self.extraBtn];
     }
+    [self bringSubviewToFront:self.scrollLine];
 }
 
 - (void)dealloc
@@ -618,7 +618,8 @@ static CGFloat const contentSizeXOff = 20.0;
 
         _scrollLine = lineView;
     }
-    
+    [self bringSubviewToFront:_scrollLine];
+
     return _scrollLine;
 }
 
