@@ -347,7 +347,7 @@ extension MGTabViewController: UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return contentViewFrame.height
     }
     
